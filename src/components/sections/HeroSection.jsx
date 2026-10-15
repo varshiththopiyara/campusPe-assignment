@@ -1,136 +1,307 @@
-import React from 'react';
+import React from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { motion } from 'framer-motion';
-import { GraduationCap, Briefcase, Search, MessageCircle, FileText, CheckCircle2, ArrowRight, Sparkles } from 'lucide-react';
+import { motion } from "framer-motion";
+import {
+  GraduationCap,
+  Briefcase,
+  Search,
+  CheckCircle2,
+  ArrowRight,
+  Sparkles,
+} from "lucide-react";
+import label from "../../assets/Label.png";
+import { FaWhatsapp } from "react-icons/fa";
+import { AiFillThunderbolt } from "react-icons/ai";
+import conatiner from "../../assets/Container.png";
+import briefCase from"../../assets/Overlay.png";
 
 const HeroSection = () => {
+  const cardFeatures = [
+    {
+      title: "College",
+      description: "Explore colleges, courses, fees, placements & more",
+      features: [
+        "Search by course, location, fees",
+        "Connect directly with colleges",
+        "Improve student placements",
+      ],
+      badge: "Coming Soon",
+      type: "college",
+    },
+    {
+      title: "I'm Looking for a Job",
+      description: "Upload your resume. We'll find jobs that fit you.",
+      features: [
+        "Jobs from 1000+ sources",
+        "AI powered matching",
+        "WhatsApp & email alerts",
+      ],
+      badge: "Available Now",
+      type: "job",
+    },
+    {
+      title: "I'm Hiring",
+      description: "Connect with colleges and find candidates.",
+      features: [
+        "Connect directly with colleges",
+        "Find the right candidates",
+        "Simplify your hiring",
+      ],
+      badge: "Coming Soon",
+      type: "hiring",
+    },
+  ];
+
+  const getCardIcon = (type) => {
+    if (type === "college") return GraduationCap;
+    if (type === "job") return Search;
+    return Briefcase;
+  };
+
   return (
-    <section className="relative w-full pt-20 pb-16 overflow-hidden bg-gradient-to-b from-white via-white to-blue-50/30">
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Top Badges Row */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-12">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="bg-white/80 backdrop-blur-sm border border-blue-100 p-4 rounded-2xl shadow-sm w-full lg:w-72">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="bg-green-100 p-1.5 rounded-full"><MessageCircle className="w-4 h-4 text-green-600" /></div>
-              <span className="text-sm font-semibold text-gray-800">WhatsApp Alert</span>
+    <section className="relative w-full overflow-hidden bg-gradient-to-b from-white via-white to-blue-50/40 pt-8 pb-16 md:pt-10">
+      {/* Background glows */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-20 left-1/4 h-64 w-64 rounded-full bg-blue-100/40 blur-3xl" />
+        <div className="absolute top-32 right-1/4 h-64 w-64 rounded-full bg-purple-100/30 blur-3xl" />
+        <div className="absolute bottom-0 left-1/2 h-48 w-96 -translate-x-1/2 rounded-full bg-cyan-100/20 blur-3xl" />
+      </div>
+
+      <div className="container relative z-10 mx-auto px-4 md:px-8">
+        {/* Top floating cards */}
+        <div className="mb-5 flex items-start justify-between gap-3 md:mb-0 md:gap-8">
+          {/* WhatsApp Alert */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-40 shrink-0 rounded-2xl border border-indigo-200 bg-white/90 p-3 shadow-sm backdrop-blur-sm md:w-52 md:p-4"
+          >
+            <div className="mb-2 flex items-center gap-2">
+              <FaWhatsapp className="h-4 w-4 shrink-0 text-green-500" />
+              <span className="text-[10px] font-medium text-orange-500 md:text-xs">
+                WhatsApp Alert
+              </span>
             </div>
-            <p className="text-xs text-gray-500">Get notified on whatsapp</p>
+
+            <p className="mb-1 text-[10px] font-semibold text-gray-800 md:text-xs">
+              Get notified on whatsapp
+            </p>
+
+            <p className="text-[9px] leading-relaxed text-gray-500 md:text-[10px]">
+              You'll get all important updates on your WhatsApp
+            </p>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.2 }} className="flex items-center gap-2 bg-blue-50 border border-blue-100 px-4 py-2 rounded-full">
-            <Sparkles className="w-4 h-4 text-blue-600" />
-            <span className="text-sm font-medium text-blue-700">AI-Powered Campus Assistant</span>
+          {/* AI badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="mt-2 hidden items-center justify-center rounded-full border border-orange-100/60 bg-orange-50/70 px-4 py-2 sm:flex"
+          >
+            <img
+              src={label}
+              alt="AI-powered campus assistant"
+              className="h-auto max-h-5 w-auto object-contain"
+            />
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="bg-white/80 backdrop-blur-sm border border-purple-100 p-4 rounded-2xl shadow-sm w-full lg:w-72">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="bg-purple-100 p-1.5 rounded-full"><FileText className="w-4 h-4 text-purple-600" /></div>
-              <span className="text-sm font-semibold text-gray-800">Resume Builder</span>
+          {/* Resume Builder */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="w-40 shrink-0 rounded-2xl border border-indigo-200 bg-white/90 p-3 shadow-sm backdrop-blur-sm md:w-52 md:p-4"
+          >
+            <div className="mb-2 flex items-center gap-2">
+              <AiFillThunderbolt className="h-4 w-4 shrink-0 text-purple-500" />
+              <span className="text-[10px] font-medium text-purple-600 md:text-xs">
+                Resume Builder
+              </span>
             </div>
-            <p className="text-xs text-gray-500">Build Your Resume</p>
+
+            <p className="mb-1 text-[10px] font-semibold text-gray-800 md:text-xs">
+              Build Your Resume
+            </p>
+
+            <p className="text-[9px] leading-relaxed text-gray-500 md:text-[10px]">
+              Our resume builder gives you dynamic options to build better and
+              faster resumes that get you hired
+            </p>
           </motion.div>
         </div>
 
-        {/* Main Headline */}
-        <div className="text-center max-w-4xl mx-auto mb-16">
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="text-5xl md:text-7xl font-bold text-gray-900 tracking-tight mb-6">
-            Connect <span className="text-blue-600">10X Faster.</span>
+        {/* Main headline */}
+        <div className="relative z-10 mx-auto mb-8 mt-6 max-w-4xl text-center md:-mt-16 md:mb-10">
+          <motion.h1
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-3 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl"
+          >
+            Connect{" "}
+            <span className="bg-gradient-to-r from-blue-500 via-cyan-500 to-emerald-500 bg-clip-text text-transparent">
+              10X Faster.
+            </span>
           </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }} className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-            One platform connecting students, colleges & employers — faster.
+
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mx-auto max-w-2xl px-2 text-sm text-gray-600 sm:text-base md:text-lg"
+          >
+            One platform connecting students, colleges &amp; employers — faster.
           </motion.p>
         </div>
 
-        {/* Search CTA Section */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-20">
-          <div className="flex items-center gap-4 bg-white p-2 rounded-full shadow-sm border border-gray-100">
-            <div className="flex -space-x-2">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="w-8 h-8 rounded-full bg-blue-100 border-2 border-white flex items-center justify-center text-xs font-bold text-blue-600">{String.fromCharCode(64 + i)}</div>
-              ))}
-            </div>
-            <div className="flex items-center gap-2 pr-4">
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-              <span className="text-sm font-medium text-gray-700">142 students matched today</span>
-            </div>
-          </div>
-          
-          <div className="flex items-center gap-2 text-blue-600 font-semibold text-lg">
-            <Sparkles className="w-5 h-5" /><span>What are you looking for?</span><Sparkles className="w-5 h-5" />
-          </div>
+        {/* Student activity, search prompt and recruiter activity */}
+        <div className="mx-auto mb-12 flex max-w-6xl flex-col items-center justify-between gap-5 md:mb-16 md:flex-row md:gap-3">
+          {/* Student activity */}
+          <motion.div
+            initial={{ opacity: 0, x: -12 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+            className="flex items-center gap-2 rounded-2xl border border-blue-100 bg-white/95 px-3 py-2 shadow-[0_4px_16px_rgba(37,99,235,0.08)]"
+          >
+            <img
+              src={conatiner}
+              alt="Student avatars"
+              className="h-auto w-10 shrink-0 object-contain"
+            />
 
-          <div className="flex items-center gap-3 bg-white p-2 pr-4 rounded-full shadow-sm border border-gray-100">
-            <div className="bg-blue-100 p-1.5 rounded-full"><Briefcase className="w-4 h-4 text-blue-600" /></div>
-            <div>
-              <p className="text-xs font-bold text-gray-800">Radiant Info</p>
-              <p className="text-[10px] text-gray-500">shortlisted 8 interns</p>
+            <div className="flex items-start gap-1.5">
+              <span className="mt-1 h-2 w-2 shrink-0 animate-pulse rounded-full bg-green-500" />
+
+              <div className="flex flex-col">
+                <span className="whitespace-nowrap text-[10px] font-semibold text-gray-800 sm:text-xs">
+                  🔥 142 students matched today
+                </span>
+                <span className="mt-0.5 text-[9px] font-normal text-gray-400">
+                  Just now · IITs, BITs, VIT
+                </span>
+              </div>
             </div>
-          </div>
+          </motion.div>
+
+          {/* Central prompt */}
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex items-center justify-center gap-3 text-center text-base font-semibold text-blue-500 sm:text-lg md:text-xl"
+          >
+            <Sparkles className="h-4 w-4 shrink-0" />
+            <span className="whitespace-nowrap">What are you looking for?</span>
+            <Sparkles className="h-4 w-4 shrink-0" />
+          </motion.div>
+
+          {/* Recruiter activity */}
+          <motion.div
+            initial={{ opacity: 0, x: 12 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.45 }}
+            className="flex items-center gap-2 rounded-2xl border border-blue-100 bg-white/95 px-3 py-2 shadow-[0_4px_16px_rgba(37,99,235,0.08)]"
+          >
+            <div className="shrink-0 rounded-lg bg-gray-100 p-1.5">
+              {/* <Briefcase className="h-4 w-4 text-gray-500" /> */}
+              <img src={briefCase} alt="new images" className="h-auto w-8 shrink-0 object-contain"/>
+            </div>
+
+            <div className="whitespace-nowrap">
+              <p className="text-[10px] font-semibold text-blue-600 sm:text-xs">
+                Radiant Info{" "}
+                <span className="font-normal text-gray-700">
+                  shortlisted 8 interns
+                </span>
+              </p>
+
+              <p className="mt-0.5 text-[9px] font-medium text-emerald-500">
+                ● Verified recruiter · 2 days ago
+              </p>
+            </div>
+          </motion.div>
         </div>
 
-        {/* 3 Main Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Card 1: College */}
-          <motion.div whileHover={{ y: -5 }} className="h-full">
-            <Card className="h-full border-blue-100 shadow-lg relative overflow-hidden group">
-              <div className="absolute top-0 right-0 p-4"><Badge variant="outline" className="text-blue-600 border-blue-200 bg-blue-50">Coming Soon</Badge></div>
-              <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors"><GraduationCap className="w-6 h-6 text-blue-600 group-hover:text-white transition-colors" /></div>
-                <CardTitle>College</CardTitle>
-                <CardDescription>Explore colleges, courses, fees, placements & more</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <ul className="space-y-3">
-                  {['Search by course, location, fees', 'Connect directly with colleges', 'Improve student placements'].map((item, i) => (
-                    <li key={i} className="flex items-center gap-2 text-sm text-gray-600"><CheckCircle2 className="w-4 h-4 text-green-500" /> {item}</li>
-                  ))}
-                </ul>
-                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white mt-4">Join Waitlist <ArrowRight className="w-4 h-4 ml-2" /></Button>
-              </CardContent>
-            </Card>
-          </motion.div>
+        {/* Main cards */}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+          {cardFeatures.map((item) => {
+            const Icon = getCardIcon(item.type);
+            const isJob = item.type === "job";
 
-          {/* Card 2: Looking for a Job */}
-          <motion.div whileHover={{ y: -5 }} className="h-full">
-            <Card className="h-full border-blue-200 shadow-xl relative overflow-hidden group bg-gradient-to-b from-white to-blue-50/20">
-              <div className="absolute top-0 right-0 p-4"><Badge variant="outline" className="text-green-600 border-green-200 bg-green-50">Available Now</Badge></div>
-              <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors"><Search className="w-6 h-6 text-blue-600 group-hover:text-white transition-colors" /></div>
-                <CardTitle>I'm Looking for a Job</CardTitle>
-                <CardDescription>Upload your resume. We'll find jobs that fit you.</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <ul className="space-y-3">
-                  {['Jobs from 1000+ sources', 'AI powered matching', 'WhatsApp & email alerts'].map((item, i) => (
-                    <li key={i} className="flex items-center gap-2 text-sm text-gray-600"><CheckCircle2 className="w-4 h-4 text-green-500" /> {item}</li>
-                  ))}
-                </ul>
-                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white mt-4">Explore Jobs <ArrowRight className="w-4 h-4 ml-2" /></Button>
-              </CardContent>
-            </Card>
-          </motion.div>
+            return (
+              <motion.div
+                key={item.type}
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.2 }}
+                className="h-full"
+              >
+                <Card
+                  className={`group relative h-full overflow-hidden ${
+                    isJob
+                      ? "border-blue-200 bg-gradient-to-b from-white to-blue-50/30 shadow-xl"
+                      : "border-blue-100 shadow-lg"
+                  }`}
+                >
+                  <div className="absolute right-0 top-0 p-4">
+                    <Badge
+                      variant="outline"
+                      className={
+                        isJob
+                          ? "border-green-200 bg-green-50 text-green-600"
+                          : "border-blue-200 bg-blue-50 text-blue-600"
+                      }
+                    >
+                      {item.badge}
+                    </Badge>
+                  </div>
 
-          {/* Card 3: Hiring */}
-          <motion.div whileHover={{ y: -5 }} className="h-full">
-            <Card className="h-full border-blue-100 shadow-lg relative overflow-hidden group">
-              <div className="absolute top-0 right-0 p-4"><Badge variant="outline" className="text-blue-600 border-blue-200 bg-blue-50">Coming Soon</Badge></div>
-              <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors"><Briefcase className="w-6 h-6 text-blue-600 group-hover:text-white transition-colors" /></div>
-                <CardTitle>I'm Hiring</CardTitle>
-                <CardDescription>Connect with colleges and find candidates.</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <ul className="space-y-3">
-                  {['Connect directly with colleges', 'Find the right candidates', 'Simplify your hiring'].map((item, i) => (
-                    <li key={i} className="flex items-center gap-2 text-sm text-gray-600"><CheckCircle2 className="w-4 h-4 text-green-500" /> {item}</li>
-                  ))}
-                </ul>
-                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white mt-4">Join Waitlist <ArrowRight className="w-4 h-4 ml-2" /></Button>
-              </CardContent>
-            </Card>
-          </motion.div>
+                  <CardHeader>
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 transition-colors group-hover:bg-blue-600">
+                      <Icon className="h-6 w-6 text-blue-600 transition-colors group-hover:text-white" />
+                    </div>
+
+                    <CardTitle>{item.title}</CardTitle>
+                    <CardDescription>{item.description}</CardDescription>
+                  </CardHeader>
+
+                  <CardContent className="space-y-4">
+                    <ul className="space-y-3">
+                      {item.features.map((feature) => (
+                        <li
+                          key={feature}
+                          className="flex items-center gap-2 text-sm text-gray-600"
+                        >
+                          <CheckCircle2 className="h-4 w-4 shrink-0 text-green-500" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <Button
+                      className={`mt-4 w-full text-white ${
+                        isJob
+                          ? "bg-blue-600 hover:bg-blue-700"
+                          : "bg-blue-600 hover:bg-blue-700"
+                      }`}
+                    >
+                      {isJob ? "Explore Jobs" : "Join Waitlist"}
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

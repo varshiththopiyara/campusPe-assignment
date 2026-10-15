@@ -28,7 +28,7 @@ const ResumeUpload = () => {
             <div className="bg-green-100 p-2 rounded-lg"><Zap className="w-5 h-5 text-green-600" /></div>
             <div><p className="text-sm font-bold text-gray-900">98% Match Rate</p><p className="text-[10px] text-gray-500">AI semantic rank</p></div>
           </div>
-          <div className="absolute -right-12 bottom-1/4 bg-white p-3 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3">
+          <div className="absolute -right-12 bottom-1/4 bg-white p-3 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3 animate-bounce">
             <div className="bg-orange-100 p-2 rounded-lg"><ShieldCheck className="w-5 h-5 text-orange-600" /></div>
             <div><p className="text-sm font-bold text-gray-900">ATS Compliant</p><p className="text-[10px] text-gray-500">Standardized parser</p></div>
           </div>
